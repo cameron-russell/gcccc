@@ -23,8 +23,14 @@ chrome.runtime.onMessage.addListener((message, sender, res) => {
 });
 
 function run(id) {
-  chrome.scripting.executeScript(
-    { target: { tabId: id }, files: ["./foreground.js"] },
-    () => console.log("script callback")
-  );
+//   chrome.scripting.executeScript(
+//     { target: { tabId: id }, files: ["./foreground.js"] },
+//     () => console.log("script callback")
+//   );
+  chrome.scripting.insertCSS({css: `html {
+    --color-calendar-graph-day-L1-bg: #631c03 !important;
+    --color-calendar-graph-day-L2-bg: #bd561d !important;
+    --color-calendar-graph-day-L3-bg: #fa7a18 !important;
+    --color-calendar-graph-day-L4-bg: #fddf68 !important;
+  }`, target: {tabId: id}})
 }
