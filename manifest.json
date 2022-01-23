@@ -19,5 +19,8 @@
       "matches": ["*://github.com/*"],
       "js": ["content-script.js"]
     }
+  ],
+  "web_accessible_resources": [
+    { "resources": ["./popup.html"], "matches": ["*://github.com/*"] }
   ]
 }
