@@ -15,6 +15,7 @@ chrome.tabs.onActivated.addListener(async ({ tabId, windowId }) => {
 
 //content script sends a message when page is refreshed
 chrome.runtime.onMessage.addListener((message, sender, res) => {
+  console.log(message)
   console.log("refreshed, getting current tab");
   getCurrentTab().then((tab_info) => {
     console.log(tab_info);
