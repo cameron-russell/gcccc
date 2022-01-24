@@ -1,3 +1,3 @@
 chrome.runtime.sendMessage({
-  message: { refreshed: true },
+  message: { type: "refresh", content: true },
 });

@@ -42,7 +42,10 @@ Array.from(document.querySelectorAll(".gcccc-input")).forEach((input, idx) => {
     //update global css here
     let variable = input.getAttribute("data-variable");
     chrome.runtime.sendMessage({
-      message: { update: `${variable}: ${input.value} !important` },
+      message: {
+        type: "update",
+        content: `${variable}: ${input.value} !important`,
+      },
     });
   };
 });
@@ -67,4 +70,3 @@ document.addEventListener("click", (e) => {
     }
   }
 });
-
