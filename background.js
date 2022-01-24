@@ -15,7 +15,7 @@ chrome.tabs.onActivated.addListener(async ({ tabId, windowId }) => {
 
 //content script sends a message when page is refreshed
 chrome.runtime.onMessage.addListener((message, sender, res) => {
-  console.log(message)
+  console.log(message);
   console.log("refreshed, getting current tab");
   getCurrentTab().then((tab_info) => {
     console.log(tab_info);
@@ -38,6 +38,15 @@ function updateCSS(id) {
         --color-calendar-graph-day-L2-bg: #bd561d !important;
         --color-calendar-graph-day-L3-bg: #fa7a18 !important;
         --color-calendar-graph-day-L4-bg: #fddf68 !important;
+      }`,
+    target: { tabId: id },
+  });
+}
+
+function updateVariable(variableString, id) {
+  chrome.scripting.insertCSS({
+    css: `html {
+        ${variableString}
       }`,
     target: { tabId: id },
   });

@@ -71,22 +71,22 @@ input[type="color"].gcccc-input {
   border: none;
 }
 
-#gcccc-input-1 {
+#gcccc-wrapper-1 {
   background-color: var(--color-calendar-graph-day-L1-bg);
   outline: 1px solid var(--color-calendar-graph-day-L1-border);
 }
 
-#gcccc-input-2 {
+#gcccc-wrapper-2 {
   background-color: var(--color-calendar-graph-day-L2-bg);
   outline: 1px solid var(--color-calendar-graph-day-L2-border);
 }
 
-#gcccc-input-3 {
+#gcccc-wrapper-3 {
   background-color: var(--color-calendar-graph-day-L3-bg);
   outline: 1px solid var(--color-calendar-graph-day-L3-border);
 }
 
-#gcccc-input-4 {
+#gcccc-wrapper-4 {
   background-color: var(--color-calendar-graph-day-L4-bg);
   outline: 1px solid var(--color-calendar-graph-day-L4-border);
 }

@@ -49,10 +49,10 @@ let menu = `<details-menu id="gcccc-color-menu" class="gcccc-closed" role="menu"
     <svg width="10" height="10" class="d-inline-block">
     <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="0"></rect>
     </svg>
-    <div id="gcccc-input-1-wrapper" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-1" value=""/></div>
-    <div id="gcccc-input-2-wrapper" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-2"/></div>
-    <div id="gcccc-input-3-wrapper" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-3"/></div>
-    <div id="gcccc-input-4-wrapper" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-4"/></div>
+    <div id="gcccc-wrapper-1" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-1" data-variable="--color-calendar-graph-day-L1-bg"/></div>
+    <div id="gcccc-wrapper-2" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-2" data-variable="--color-calendar-graph-day-L2-bg"/></div>
+    <div id="gcccc-wrapper-3" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-3" data-variable="--color-calendar-graph-day-L3-bg"/></div>
+    <div id="gcccc-wrapper-4" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-4" data-variable="--color-calendar-graph-day-L4-bg"/></div>
   More
 </div>
   </form>    
@@ -78,10 +78,14 @@ div.insertAdjacentHTML("beforeend", menu);
 
 // for each color picker, update the wrapper background color and the global variable
 Array.from(document.querySelectorAll(".gcccc-input")).forEach((input, idx) => {
-  input.parentElement.style.backgroundColor = globalColours[idx];
+  // input.parentElement.style.backgroundColor = globalColours[idx];
   input.onchange = function () {
-    input.parentElement.style.backgroundColor = input.value;
+    // input.parentElement.style.backgroundColor = input.value;
     //update global css here
+    let variable = input.getAttribute("data-variable");
+    chrome.runtime.sendMessage({
+      message: { update: `${variable}: ${input.value} !important` },
+    });
   };
 });
 
@@ -97,16 +101,6 @@ function toggleMenu(classList) {
   } else gccccMenu.classList.add("gcccc-closed");
 }
 
-// apply function to event listener on each color square
-let lessmore = document.getElementById("gcccc-lessmore");
-let svgs = Array.from(lessmore.childNodes).filter((el) => el.nodeName == "svg");
-svgs.forEach((svg) =>
-  svg.addEventListener("click", (e) => {
-    e.stopPropagation();
-    sendCSSToBackground();
-  })
-);
-
 // close if anything else clicked on the page
 document.addEventListener("click", (e) => {
   if (e.target !== div) {
@@ -116,10 +110,3 @@ document.addEventListener("click", (e) => {
   }
 });
 
-function sendCSSToBackground() {
-  console.log("sendCSS func");
-
-  // chrome.runtime.sendMessage({
-  //   message: { refreshed: true },
-  // });
-}
