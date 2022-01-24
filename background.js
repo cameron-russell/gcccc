@@ -15,7 +15,6 @@ chrome.tabs.onActivated.addListener(async ({ tabId, windowId }) => {
 
 //content script sends a message when page is refreshed
 chrome.runtime.onMessage.addListener(async ({ message }, sender, res) => {
-  // console.log("refreshed, getting current tab");
   let { id } = await getCurrentTab();
   if (message?.type == "update") {
     console.log("update");
@@ -23,24 +22,23 @@ chrome.runtime.onMessage.addListener(async ({ message }, sender, res) => {
     updateVariable(message?.content, id);
   } else {
     console.log("refresh");
+    run(id);
   }
-  run(id);
-  // console.log(tab_info);
 });
 
 function run(id) {
   chrome.scripting.executeScript(
-    { target: { tabId: id }, files: ["./foreground.js"] },
-    () => console.log("script callback")
+    { target: { tabId: id }, files: ["./foreground.js"] }
+    // () => console.log("script callback")
   );
-  // updateCSS(id);
+  // addHalloweenColours(id);
 }
 
 function isValidUrl(url) {
   return /https?:\/\/github\.com\/([A-z0-9])+\/?/i.test(url);
 }
 
-function updateCSS(id) {
+function addHalloweenColours(id) {
   chrome.scripting.insertCSS({
     css: `html {
         --color-calendar-graph-day-L1-bg: #631c03 !important;
