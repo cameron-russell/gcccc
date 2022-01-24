@@ -1,24 +1,58 @@
 console.log("executing foreground script");
 
+// let menu = `<details-menu id="gcccc-color-menu" class="gcccc-closed" role="menu">
+//   <form class="edit_user" accept-charset="UTF-8" method="post">
+//   <div id="gcccc-lessmore" class="color-fg-muted">
+//   Less
+//     <svg width="10" height="10" class="d-inline-block">
+//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="0"></rect>
+//     </svg>
+//     <svg width="10" height="10" class="d-inline-block">
+//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="1"></rect>
+//     </svg>
+//     <svg width="10" height="10" class="d-inline-block">
+//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="2"></rect>
+//     </svg>
+//     <svg width="10" height="10" class="d-inline-block">
+//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="3"></rect>
+//     </svg>
+//     <svg width="10" height="10" class="d-inline-block">
+//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="4"></rect>
+//     </svg>
+//   More
+// </div>
+//   </form>
+// </details-menu>`;
+let html = document.querySelector("html");
+
+let globalColours = [
+  getComputedStyle(html)
+    .getPropertyValue("--color-calendar-graph-day-L1-bg")
+    .trim(),
+  getComputedStyle(html)
+    .getPropertyValue("--color-calendar-graph-day-L2-bg")
+    .trim(),
+  getComputedStyle(html)
+    .getPropertyValue("--color-calendar-graph-day-L3-bg")
+    .trim(),
+  getComputedStyle(html)
+    .getPropertyValue("--color-calendar-graph-day-L4-bg")
+    .trim(),
+];
+
+console.log(globalColours);
+
 let menu = `<details-menu id="gcccc-color-menu" class="gcccc-closed" role="menu">
   <form class="edit_user" accept-charset="UTF-8" method="post">
   <div id="gcccc-lessmore" class="color-fg-muted">
   Less
     <svg width="10" height="10" class="d-inline-block">
-      <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="0"></rect>
+    <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="0"></rect>
     </svg>
-    <svg width="10" height="10" class="d-inline-block">
-      <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="1"></rect>
-    </svg>
-    <svg width="10" height="10" class="d-inline-block">
-      <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="2"></rect>
-    </svg>
-    <svg width="10" height="10" class="d-inline-block">
-      <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="3"></rect>
-    </svg>
-    <svg width="10" height="10" class="d-inline-block">
-      <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="4"></rect>
-    </svg>
+    <div id="gcccc-input-1-wrapper" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-1" value=""/></div>
+    <div id="gcccc-input-2-wrapper" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-2"/></div>
+    <div id="gcccc-input-3-wrapper" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-3"/></div>
+    <div id="gcccc-input-4-wrapper" class="gcccc-wrapper"><input type="color" class="gcccc-input" id="gcccc-input-4"/></div>
   More
 </div>
   </form>    
@@ -39,6 +73,17 @@ el.insertAdjacentElement("afterend", div);
 
 //add menu element
 div.insertAdjacentHTML("beforeend", menu);
+
+//update colours of menu element
+
+// for each color picker, update the wrapper background color and the global variable
+Array.from(document.querySelectorAll(".gcccc-input")).forEach((input, idx) => {
+  input.parentElement.style.backgroundColor = globalColours[idx];
+  input.onchange = function () {
+    input.parentElement.style.backgroundColor = input.value;
+    //update global css here
+  };
+});
 
 //menu element
 let gccccMenu = document.getElementById("gcccc-color-menu");
