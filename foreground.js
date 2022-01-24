@@ -1,47 +1,5 @@
 console.log("executing foreground script");
 
-// let menu = `<details-menu id="gcccc-color-menu" class="gcccc-closed" role="menu">
-//   <form class="edit_user" accept-charset="UTF-8" method="post">
-//   <div id="gcccc-lessmore" class="color-fg-muted">
-//   Less
-//     <svg width="10" height="10" class="d-inline-block">
-//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="0"></rect>
-//     </svg>
-//     <svg width="10" height="10" class="d-inline-block">
-//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="1"></rect>
-//     </svg>
-//     <svg width="10" height="10" class="d-inline-block">
-//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="2"></rect>
-//     </svg>
-//     <svg width="10" height="10" class="d-inline-block">
-//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="3"></rect>
-//     </svg>
-//     <svg width="10" height="10" class="d-inline-block">
-//       <rect width="10" height="10" class="ContributionCalendar-day" rx="2" ry="2" data-level="4"></rect>
-//     </svg>
-//   More
-// </div>
-//   </form>
-// </details-menu>`;
-let html = document.querySelector("html");
-
-let globalColours = [
-  getComputedStyle(html)
-    .getPropertyValue("--color-calendar-graph-day-L1-bg")
-    .trim(),
-  getComputedStyle(html)
-    .getPropertyValue("--color-calendar-graph-day-L2-bg")
-    .trim(),
-  getComputedStyle(html)
-    .getPropertyValue("--color-calendar-graph-day-L3-bg")
-    .trim(),
-  getComputedStyle(html)
-    .getPropertyValue("--color-calendar-graph-day-L4-bg")
-    .trim(),
-];
-
-console.log(globalColours);
-
 let menu = `<details-menu id="gcccc-color-menu" class="gcccc-closed" role="menu">
   <form class="edit_user" accept-charset="UTF-8" method="post">
   <div id="gcccc-lessmore" class="color-fg-muted">
