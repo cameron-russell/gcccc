@@ -17,10 +17,8 @@
   "content_scripts": [
     {
       "matches": ["*://github.com/*"],
-      "js": ["content-script.js"]
+      "js": ["content-script.js"],
+      "css": ["style.css"]
     }
-  ],
-  "web_accessible_resources": [
-    { "resources": ["./popup.html"], "matches": ["*://github.com/*"] }
   ]
 }
