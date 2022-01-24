@@ -6,10 +6,11 @@
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 100;
-  width: 160px;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  z-index: 80;
+  /* width: 60px; */
+  padding: 4px 20px 4px 20px;
+  /* padding-top: 4px; */
+  /* padding-bottom: 4px; */
   margin-top: 2px;
   list-style: none;
   background-color: var(--color-canvas-overlay);
@@ -42,4 +43,10 @@
 
 .gcccc-closed {
   display: none !important;
+}
+
+#gcccc-lessmore {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
 }
