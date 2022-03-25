@@ -1,0 +1,92 @@
+#gcccc-container {
+  position: relative;
+}
+
+#gcccc-color-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 80;
+  /* width: 60px; */
+  padding: 4px 16px 4px 16px;
+  /* padding-top: 4px; */
+  /* padding-bottom: 4px; */
+  margin-top: 2px;
+  list-style: none;
+  background-color: var(--color-canvas-overlay);
+  background-clip: padding-box;
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  box-shadow: var(--color-shadow-large);
+}
+#gcccc-color-menu::before {
+  position: absolute;
+  display: inline-block;
+  content: "";
+  border: 8px solid transparent;
+  border-bottom-color: var(--color-border-default);
+  top: -16px;
+  left: 9px;
+  right: auto;
+}
+
+#gcccc-color-menu::after {
+  top: -14px;
+  left: 10px;
+  right: auto;
+  border: 7px solid transparent;
+  border-bottom-color: var(--color-canvas-overlay);
+  position: absolute;
+  display: inline-block;
+  content: "";
+}
+
+.gcccc-closed {
+  display: none !important;
+}
+
+#gcccc-lessmore {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gcccc-input {
+  width: 10px;
+  height: 10px;
+  padding: 0px;
+  border: none;
+  appearance: none;
+  border-color: transparent;
+}
+
+.gcccc-wrapper {
+  border-radius: 2px;
+  margin-top: 2px;
+}
+
+input[type="color"].gcccc-input {
+  opacity: 0;
+  display: block;
+  border: none;
+}
+
+#gcccc-wrapper-1 {
+  background-color: var(--color-calendar-graph-day-L1-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L1-border);
+}
+
+#gcccc-wrapper-2 {
+  background-color: var(--color-calendar-graph-day-L2-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L2-border);
+}
+
+#gcccc-wrapper-3 {
+  background-color: var(--color-calendar-graph-day-L3-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L3-border);
+}
+
+#gcccc-wrapper-4 {
+  background-color: var(--color-calendar-graph-day-L4-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L4-border);
+}
