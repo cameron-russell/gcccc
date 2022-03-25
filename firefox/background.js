@@ -1,4 +1,6 @@
 console.log("background script loaded.");
+const { cpBrowser: cpb } = importVarsFrom('cpBrowser');
+console.log(cpb.getBrowser())
 
 async function getCurrentTab() {
   let queryOptions = { active: true, currentWindow: true };

@@ -11,7 +11,7 @@
   },
   "permissions": ["tabs", "*://github.com/*"],
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["modules.js", "utilities.js", "background.js"]
   },
   "content_scripts": [
     {
