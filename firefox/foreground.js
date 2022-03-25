@@ -41,7 +41,7 @@ Array.from(document.querySelectorAll(".gcccc-input")).forEach((input, idx) => {
     // input.parentElement.style.backgroundColor = input.value;
     //update global css here
     let variable = input.getAttribute("data-variable");
-    chrome.runtime.sendMessage({
+    browser.runtime.sendMessage({
       message: {
         type: "update",
         content: `${variable}: ${input.value} !important`,

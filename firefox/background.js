@@ -2,11 +2,11 @@ console.log("background script loaded.");
 
 async function getCurrentTab() {
   let queryOptions = { active: true, currentWindow: true };
-  let [tab] = await chrome.tabs.query(queryOptions);
+  let [tab] = await browser.tabs.query(queryOptions);
   return tab;
 }
 
-chrome.tabs.onActivated.addListener(async ({ tabId, windowId }) => {
+browser.tabs.onActivated.addListener(async ({ tabId, windowId }) => {
   const curTab = await getCurrentTab();
   if (isValidUrl(curTab.url)) {
     run(tabId);
@@ -14,7 +14,7 @@ chrome.tabs.onActivated.addListener(async ({ tabId, windowId }) => {
 });
 
 //content script sends a message when page is refreshed
-chrome.runtime.onMessage.addListener(async ({ message }, sender, res) => {
+browser.runtime.onMessage.addListener(async ({ message }, sender, res) => {
   let { id } = await getCurrentTab();
   if (message?.type == "update") {
     console.log("update");
@@ -27,8 +27,9 @@ chrome.runtime.onMessage.addListener(async ({ message }, sender, res) => {
 });
 
 function run(id) {
-  chrome.scripting.executeScript(
-    { target: { tabId: id }, files: ["./foreground.js"] }
+  browser.tabs.executeScript(
+    id,
+    { file: "./foreground.js" }
     // () => console.log("script callback")
   );
   // addHalloweenColours(id);
@@ -39,23 +40,21 @@ function isValidUrl(url) {
 }
 
 function addHalloweenColours(id) {
-  chrome.scripting.insertCSS({
-    css: `html {
+  browser.tabs.insertCSS(id, {
+    code: `html {
         --color-calendar-graph-day-L1-bg: #631c03 !important;
         --color-calendar-graph-day-L2-bg: #bd561d !important;
         --color-calendar-graph-day-L3-bg: #fa7a18 !important;
         --color-calendar-graph-day-L4-bg: #fddf68 !important;
       }`,
-    target: { tabId: id },
   });
 }
 
 function updateVariable(variableString, id) {
   console.log("updating variable");
-  chrome.scripting.insertCSS({
-    css: `html {
+  browser.tabs.insertCSS(id, {
+    code: `html {
         ${variableString}
       }`,
-    target: { tabId: id },
   });
 }

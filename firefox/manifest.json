@@ -9,8 +9,10 @@
     "48": "./icons/48.png",
     "128": "./icons/128.png"
   },
-  "permissions": ["tabs", "scripting"],
-  "host_permissions": ["*://github.com/*"],
+  "permissions": ["tabs", "*://github.com/*"],
+  "background": {
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
       "matches": ["*://github.com/*"],
